@@ -1,17 +1,10 @@
-
+---
 import crypto from 'crypto';
 
-let message = '';
-if (Astro.request.method === 'POST') {
-  const formData = await Astro.request.formData();
-  const email = formData.get('email');
-  if (email) {
-    // Génère un token factice
-    const token = crypto.randomBytes(16).toString('hex');
-    // Affiche le lien magique (simulation d'envoi par email)
-    message = `Lien magique généré : <a href='/magic?token=${token}'>/magic?token=${token}</a>`;
-  }
-}
+// Génère un token côté build (simulation)
+const token = crypto.randomBytes(16).toString('hex');
+const magicLink = `/magic?token=${token}`;
+---
 
 <html lang="fr">
   <head>
@@ -20,11 +13,26 @@ if (Astro.request.method === 'POST') {
   </head>
   <body>
     <h1>Connexion par lien magique</h1>
-    <form method="post">
+
+    <form onsubmit="event.preventDefault(); generateLink();">
       <label for="email">Email :</label><br />
-      <input type="email" id="email" name="email" required /><br /><br />
-      <button type="submit">Envoyer le lien magique</button>
+      <input type="email" id="email" required /><br /><br />
+      <button type="submit">Générer le lien magique</button>
     </form>
-    <div style="margin-top:2em;color:green;">{message && Astro.raw(message)}</div>
+
+    <div id="result" style="margin-top:2em;color:green;"></div>
+
+    <script>
+      function generateLink() {
+        const email = document.getElementById('email').value;
+        if (!email) return;
+
+        const token = Math.random().toString(36).substring(2);
+        const link = `/magic?token=${token}`;
+
+        document.getElementById('result').innerHTML =
+          "Lien magique : <a href='" + link + "'>" + link + "</a>";
+      }
+    </script>
   </body>
 </html>
