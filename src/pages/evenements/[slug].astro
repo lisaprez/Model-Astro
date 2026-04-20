@@ -1,0 +1,44 @@
+---
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const evenements = await getCollection('evenements');
+  return evenements.map((evt) => ({
+    params: { slug: evt.id },
+    props: { evt },
+  }));
+}
+
+const { evt } = Astro.props;
+const { Content } = await render(evt);
+
+const date = new Date(evt.data.date).toLocaleDateString('fr-FR', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+---
+
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{evt.data.titre}</title>
+  </head>
+  <body>
+
+    <h1>{evt.data.titre}</h1>
+    <p>{date}{evt.data.heure && ` — ${evt.data.heure}`}</p>
+    {evt.data.lieu_nom && <p>{evt.data.lieu_nom}</p>}
+    {evt.data.lieu_adresse && <p>{evt.data.lieu_adresse}</p>}
+    {evt.data.description && <p><em>{evt.data.description}</em></p>}
+
+    <Content />
+
+    {evt.data.lien_externe && (
+      <p><a href={evt.data.lien_externe} target="_blank">Plus d'infos</a></p>
+    )}
+
+    <a href="/evenements">← Retour aux événements</a>
+
+  </body>
+</html>

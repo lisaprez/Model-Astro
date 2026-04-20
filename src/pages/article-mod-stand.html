@@ -1,0 +1,89 @@
+<!--
+  Page : Modèle d'article standard
+  Description : Exemple de structure HTML commentée, claire et réutilisable.
+  Auteur : à compléter
+-->
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Titre de la page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      /* Calque principal, translucide et colorisable */
+      .layer {
+        background: rgba(100, 100, 200, 0.2); /* couleur et transparence modifiables */
+        border-radius: 1em;
+        margin: 2em auto;
+        padding: 2em;
+        max-width: 700px;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      }
+      .subtitle {
+        font-size: 1.3em;
+        color: #555;
+        margin-bottom: 1.5em;
+        font-style: italic;
+      }
+      /* Ajoute ici d'autres classes pour texte, médias, cellules, etc. */
+    </style>
+  </head>
+  <body>
+    <div class="layer">
+      <!-- Titre (obligatoire) -->
+      <h1>Modèle d'article standard</h1>
+      <!-- Sous-titre (obligatoire, max 80 caractères) -->
+      <div class="subtitle">Sous-titre de l'article (max 80 caractères)</div>
+      <!-- Description courte (obligatoire, max 160 caractères) -->
+      <div style="color:#666;font-size:1em;margin-bottom:1.5em;">Description courte de l'article (max 160 caractères)</div>
+      <!-- Zone de texte principale -->
+      <div style="margin-bottom:2em;">
+        <p>Zone de texte principale de l'article. Ajoute ici ton contenu.</p>
+      </div>
+
+      <!-- Publication -->
+      <div style="margin-bottom:2em;">
+        <strong>Publication :</strong><br />
+        <!-- Date de publication (obligatoire) -->
+        <span style="color:#888;">Date de publication* : 20 avril 2026</span><br />
+        <!-- Auteur -->
+        <span style="color:#888;">Auteur : Nom de l'auteur</span><br />
+        <!-- Catégories/tags (optionnel) -->
+        <span style="color:#aaa;">Catégories/tags (optionnel) : Exemple, Démo</span>
+      </div>
+      <!--
+        Ici commence le contenu principal de l'article.
+        Ajoute du texte, des images, des cellules, etc.
+      -->
+      <!-- Zone de texte principale de l'article. Ajoute ici ton contenu. -->
+      <!-- Médias -->
+      <div style="margin-bottom:2em;">
+        <strong>Médias :</strong><br />
+        <!-- Légende de l'image (max 80 caractères) -->
+        <span style="color:#888;">Légende de l'image (max 80 caractères)</span><br />
+        <!-- Image principale (convertie en .webp) -->
+        <img src="/images/image-test.webp" alt="Image-test" style="display:block;max-width:100%;border-radius:0.5em;margin:1em 0;box-shadow:0 2px 12px rgba(0,0,0,0.10);" />
+        <!-- (Optionnel) Zone pour médias (vidéo, audio) -->
+        <div style="margin:1em 0;padding:1em;background:rgba(0,0,0,0.03);border-radius:0.5em;">
+          <!-- Exemple de média vidéo -->
+          <div style="margin-bottom:1em;">
+            <video src="/videos/exemple.mp4" controls style="max-width:100%;border-radius:0.5em;background:#222;"></video>
+            <div style="font-size:0.9em;color:#666;">Légende de la vidéo (exemple.mp4)</div>
+          </div>
+          <!-- Exemple de média audio -->
+          <div>
+            <audio src="/audios/exemple.mp3" controls style="width:100%;"></audio>
+            <div style="font-size:0.9em;color:#666;">Légende de l'audio (exemple.mp3)</div>
+          </div>
+        </div>
+      </div>
+      <!-- Social (optionnel) -->
+      <div style="margin-top:2em;">
+        <strong>Social :</strong><br />
+        <!-- Boutons de partage ou navigation (optionnel) -->
+        <button style="margin-right:1em;">Partager sur X</button>
+        <button>Partager sur Mastodon</button>
+      </div>
+    </div>
+  </body>
+</html>

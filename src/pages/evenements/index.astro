@@ -1,0 +1,31 @@
+---
+import { getCollection } from 'astro:content';
+
+const evenements = await getCollection('evenements');
+
+const tries = evenements.sort((a, b) =>
+  new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+---
+
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Événements</title>
+  </head>
+  <body>
+    <h1>Événements</h1>
+    <ul>
+      {tries.map((evt) => (
+        <li>
+          <a href={`/evenements/${evt.id}`}>
+            <h2>{evt.data.titre}</h2>
+          </a>
+          <p>{evt.data.date}{evt.data.heure && ` — ${evt.data.heure}`}</p>
+          {evt.data.lieu_nom && <p>{evt.data.lieu_nom}</p>}
+          {evt.data.description && <p>{evt.data.description}</p>}
+        </li>
+      ))}
+    </ul>
+  </body>
+</html>
