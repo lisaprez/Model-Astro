@@ -1,0 +1,28 @@
+ backend:
+   name: github
+   repo: lisaprez/Model-Astro
+   branch: main
+ 
+ media_folder: public/images
+ public_folder: /images
+ 
+ collections:
+   - name: evenements
+     label: Événements
+     folder: src/content/evenements
+     create: true
+     slug: "{{slug}}"
+     fields:
+       - { label: Titre, name: titre, widget: string }
+       - { label: Date, name: date, widget: date, format: YYYY-MM-DD }
+       - { label: Heure, name: heure, widget: string, required: false }
+       - { label: Lieu, name: lieu_nom, widget: string, required: false }
+       - { label: Adresse, name: lieu_adresse, widget: string, required: false }
+       - { label: Auteur, name: auteur, widget: string, required: false }
+       - { label: Catégorie, name: categorie, widget: string, required: false }
+       - { label: Tags, name: tags, widget: list, required: false }
+       - { label: Description, name: description, widget: text, required: false }
+       - { label: Texte principal, name: body, widget: markdown }
+       - { label: Image, name: image, widget: string, required: false }
+       - { label: Légende image, name: legende_image, widget: string, required: false }
+       - { label: Lien externe, name: lien_externe, widget: string, required: false }
