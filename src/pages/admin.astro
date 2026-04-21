@@ -1,10 +1,21 @@
 ---
 ---
----
 <html>
   <head>
     <meta charset="utf-8" />
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   </head>
-  <body></body>
+  <body>
+    <script>
+      window.CMS_MANUAL_INIT = true;
+    </script>
+    <script>
+      fetch("/admin/config.yml")
+        .then(res => res.text())
+        .then(text => {
+          CMS.init({ config: YAML.parse(text) });
+        });
+    </script>
+    <script src="https://unpkg.com/yaml@2.3.1/dist/yaml.min.js"></script>
+  </body>
 </html>
