@@ -4,5 +4,17 @@
     <meta charset="utf-8" />
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   </head>
-  <body></body>
+  <body>
+    <script>
+      window.CMS_MANUAL_INIT = true;
+    </script>
+    <script src="https://unpkg.com/yaml@2.3.1/dist/yaml.min.js"></script>
+    <script>
+      fetch("./config.yml")
+        .then(r => r.text())
+        .then(text => {
+          CMS.init({ config: YAML.parse(text) });
+        });
+    </script>
+  </body>
 </html>
