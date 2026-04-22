@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 
-exports.handler = async (event) => {
-  const { code } = event.queryStringParameters;
+export default async function handler(req, res) {
+  const { code } = req.query;
 
   const response = await fetch('https://github.com/login/oauth/access_token', {
     method: 'POST',
@@ -15,14 +15,11 @@ exports.handler = async (event) => {
 
   const data = await response.json();
 
-  return {
-    statusCode: 200,
-    headers: { 'Content-Type': 'text/html' },
-    body: `<script>
-      window.opener.postMessage(
-        'authorization:github:success:${JSON.stringify(data)}',
-        '*'
-      );
-    </script>`,
-  };
-};
+  res.setHeader('Content-Type', 'text/html');
+  res.send(`<script>
+    window.opener.postMessage(
+      'authorization:github:success:${JSON.stringify(data)}',
+      '*'
+    );
+  </script>`);
+}
